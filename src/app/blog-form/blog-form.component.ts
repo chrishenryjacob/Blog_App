@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { IBlog } from '../blog-list/blog.model';
+import { IBlog } from '../shared/models/blog.model';
 
 @Component({
   selector: 'app-blog-form',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IBlog } from './blog-list/blog.model';
+import { IBlog } from './shared/models/blog.model';
 
 @Component({
   selector: 'app-root',

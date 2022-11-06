@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { IBlog } from './blog.model';
+import { IBlog } from '../shared/models/blog.model';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 @Component({
