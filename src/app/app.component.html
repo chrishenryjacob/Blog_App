@@ -3,46 +3,21 @@
 </nz-card>
 
 <nz-card class="centered">
-
   <div nz-row>
     <div nz-col nzSpan="3"></div>
     <div nz-col nzSpan="18">
-
-      <div nz-row>
-
-        <div nz-col nzSpan="16">
-          <nz-input-group style="width: 90%;" [nzSuffix]="textAreaClearTpl"
-            class="ant-input-affix-wrapper-textarea-with-clear-btn">
-            <textarea nz-input [(ngModel)]="blogContent" placeholder="Please input a content"></textarea>
-          </nz-input-group>
-          <ng-template #textAreaClearTpl>
-            <span nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="blogContent"
-              (click)="blogContent = ''"></span>
-          </ng-template>
-        </div>
-
-        <div nz-col nzSpan="8">
-          <nz-upload [nzHeaders]="{ authorization: 'authorization-text' }" (nzChange)="handleChange($event)">
-            <button nz-button>
-              <span nz-icon nzType="upload"></span>
-              Click to Upload
-            </button>
-          </nz-upload>
-        </div>
-      </div>
-
+      <app-blog-form></app-blog-form>
     </div>
-
     <div nz-col nzSpan="3"></div>
-  </div>
-
-  <br>
-
-  <div nz-row class="centered">
-    <button nz-button nzType="primary">Submit</button>
   </div>
 </nz-card>
 
-<nz-card>
-
+<nz-card class="centered">
+  <div nz-row>
+    <div nz-col nzSpan="3"></div>
+    <div nz-col nzSpan="18">
+      <app-blog-list></app-blog-list>
+    </div>
+    <div nz-col nzSpan="3"></div>
+  </div>
 </nz-card>
