@@ -19,12 +19,15 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { BlogFormComponent } from './blog-form/blog-form.component';
+import { BlogListComponent } from './blog-list/blog-list.component';
+
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogFormComponent,
+    BlogListComponent
   ],
   imports: [
     BrowserModule,
