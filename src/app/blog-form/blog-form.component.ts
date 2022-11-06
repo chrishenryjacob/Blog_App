@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { IBlog } from '../blog-list/blog.model';
 
 @Component({
   selector: 'app-blog-form',
@@ -28,9 +29,15 @@ export class BlogFormComponent implements OnInit {
     const blogData = localStorage.getItem('BlogDetails');
     let formData = blogData ? JSON.parse(blogData) : [];
 
-    const result = {
-      description: this.blogContent,
-      img: this.fileList
+    const result: IBlog = {
+      id: formData.length + 1,
+      author: 'chris',
+      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      content: this.blogContent,
+      likes: 0,
+      dislikes: 0,
+      img: this.fileList[0],
+      children: []
     }
 
     formData.push(result);
