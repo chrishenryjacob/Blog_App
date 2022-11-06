@@ -1,0 +1,12 @@
+{
+  "AppTitle":"My Blog App",
+  "BlogPlaceholder": "Please input a content",
+  "CommentPlaceholder": "Add comment",
+  "UploadBtn":"Select File",
+  "SubmitBtn":"Submit",
+  "ConfirmText":"Are you sure?",
+  "NotFound": "No blog posts found",
+  "Reply":"Reply to",
+  "Yes":"Yes",
+  "No":"No"
+}
