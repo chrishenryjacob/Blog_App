@@ -31,6 +31,7 @@ export class BlogFormComponent implements OnInit {
 
     const result: IBlog = {
       id: formData.length + 1,
+      parentId: null,
       author: 'chris',
       avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       content: this.blogContent,

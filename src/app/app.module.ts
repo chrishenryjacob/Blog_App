@@ -23,6 +23,7 @@ import { BlogListComponent } from './blog-list/blog-list.component';
 import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 registerLocaleData(en);
 
@@ -47,7 +48,8 @@ registerLocaleData(en);
     NzButtonModule,
     NzCommentModule,
     NzDatePickerModule,
-    NzAvatarModule
+    NzAvatarModule,
+    NzPopconfirmModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

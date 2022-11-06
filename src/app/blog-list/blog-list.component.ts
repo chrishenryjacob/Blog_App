@@ -33,6 +33,7 @@ export class BlogListComponent implements OnInit {
 
     data.children.push({
       id: this.selectedId + 100,
+      parentId: data.id,
       author: 'chris',
       avatar: this.avatar,
       content: this.userComment,
@@ -45,6 +46,24 @@ export class BlogListComponent implements OnInit {
     this.selectedId = 0;
     this.userComment = '';
     this.submitting = false;
+  }
+
+  deleteComment(data: IBlog) {
+    if (data.parentId) {
+      this.deleteByParentId(this.dataSource, data.parentId);
+    }
+    else {
+      const index = this.dataSource.findIndex(item => item.id === data.id);
+      this.dataSource.splice(index, 1);
+    }
+    this.updateBlogDetails();
+  }
+
+  deleteByParentId(data: any[], id: any) {
+    data.forEach(item => {
+      if (item.id === id) item.children = [];
+      if (item.children.length > 0) this.deleteByParentId(item.children, id)
+    });
   }
 
   updateBlogDetails() {

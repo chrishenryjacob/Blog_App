@@ -12,6 +12,11 @@
     <nz-comment-action>
       <span (click)="selectedId = item.id">Reply to</span>
     </nz-comment-action>
+    <nz-comment-action>
+      <a nz-button [nzDanger]="true" nzSize="small" nzType="text" nz-popconfirm nzPopconfirmTitle="Are you sure?"
+        nzOkText="Yes" nzCancelText="No" (nzOnConfirm)="deleteComment(item)" [nzIcon]="iconTpl"><i nz-icon
+          nzType="delete" nzTheme="fill"></i></a>
+    </nz-comment-action>
 
     <nz-comment *ngIf="item.id === selectedId">
       <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="avatar"></nz-avatar>
@@ -46,4 +51,8 @@
   <ng-container *ngFor="let data of dataSource">
     <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ item: data }"></ng-template>
   </ng-container>
+</ng-template>
+
+<ng-template #iconTpl>
+  <i nz-icon nzType="question-circle-o" style="color: red;"></i>
 </ng-template>

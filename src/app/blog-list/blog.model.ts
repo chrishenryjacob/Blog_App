@@ -1,7 +1,8 @@
 import { NzUploadFile } from "ng-zorro-antd/upload";
 
 export interface IBlog {
-  id:number,
+  id: number,
+  parentId: null | number,
   author: string,
   avatar: string,
   content: string,
