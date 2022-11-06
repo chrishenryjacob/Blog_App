@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { formatDistance } from 'date-fns';
 import { IBlog } from './blog.model';
 
 @Component({
@@ -10,23 +9,24 @@ import { IBlog } from './blog.model';
 export class BlogListComponent implements OnInit {
 
   @Input() dataSource: IBlog[] = [];
-  likes!: number;
-  dislikes!: number;
-  time = formatDistance(new Date(), new Date());
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  like(): void {
-    this.likes = 1;
-    this.dislikes = 0;
+  addLike(id: number): void {
+    const index = this.dataSource.findIndex(item => item.id === id);
+    this.dataSource[index].likes += 1;
+    this.updateBlogDetails()
   }
 
-  dislike(): void {
-    this.likes = 0;
-    this.dislikes = 1;
+  addComments(id: number) {
+
+  }
+
+  updateBlogDetails() {
+    localStorage.setItem('BlogDetails', JSON.stringify(this.dataSource));
   }
 
 }

@@ -35,7 +35,6 @@ export class BlogFormComponent implements OnInit {
       avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       content: this.blogContent,
       likes: 0,
-      dislikes: 0,
       img: this.fileList[0],
       children: []
     }

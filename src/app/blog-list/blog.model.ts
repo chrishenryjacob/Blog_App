@@ -6,7 +6,6 @@ export interface IBlog {
   avatar: string,
   content: string,
   likes: number,
-  dislikes: number,
   img: NzUploadFile,
   children: IBlog[]
 }
