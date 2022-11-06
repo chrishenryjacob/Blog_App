@@ -15,7 +15,7 @@ export class BlogFormComponent implements OnInit {
   blogContent !: string;
   fileList: NzUploadFile[] = [];
   attachment!: NzUploadFile;
-  fileAttached!: { content: string; name: string; };
+  fileAttached: string = '';
 
   constructor(private msg: NzMessageService) { }
 
@@ -31,10 +31,7 @@ export class BlogFormComponent implements OnInit {
       this.attachment = this.fileList[0];
       this.getBase64(this.attachment as unknown as File, (img: string) => {
         const base64 = img.split(',')[1];
-        this.fileAttached = {
-          content: base64,
-          name: file.name,
-        }
+        this.fileAttached = base64;
       });
     };
     return false;
@@ -62,7 +59,7 @@ export class BlogFormComponent implements OnInit {
       avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       content: this.blogContent,
       likes: 0,
-      img: 'data:image/png;base64,' + this.fileAttached.content,
+      img: this.fileAttached ? 'data:image/png;base64,' + this.fileAttached : '',
       children: []
     }
 
@@ -78,5 +75,6 @@ export class BlogFormComponent implements OnInit {
   resetForm() {
     this.blogContent = '';
     this.fileList = [];
+    this.fileAttached = '';
   }
 }
