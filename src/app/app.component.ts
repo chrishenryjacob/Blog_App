@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IBlog } from './blog-list/blog.model';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  blogDetails: any;
+  blogDetails: IBlog[] = [];
 
   ngOnInit(): void {
     this.getallBlogs();

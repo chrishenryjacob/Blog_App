@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { formatDistance } from 'date-fns';
+import { IBlog } from './blog.model';
 
 @Component({
   selector: 'app-blog-list',
@@ -7,12 +9,24 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BlogListComponent implements OnInit {
 
-  @Input() dataSource: any[] = [];
+  @Input() dataSource: IBlog[] = [];
+  likes!: number;
+  dislikes!: number;
+  time = formatDistance(new Date(), new Date());
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.dataSource);
+  }
+
+  like(): void {
+    this.likes = 1;
+    this.dislikes = 0;
+  }
+
+  dislike(): void {
+    this.likes = 0;
+    this.dislikes = 1;
   }
 
 }
