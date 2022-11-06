@@ -10,12 +10,12 @@
       <span class="count like">{{ item.likes }}</span>
     </nz-comment-action>
     <nz-comment-action>
-      <span (click)="selectedId = item.id">Reply to</span>
+      <span (click)="selectedId = item.id">{{'Reply' | translate}}</span>
     </nz-comment-action>
     <nz-comment-action>
-      <a nz-button [nzDanger]="true" nzSize="small" nzType="text" nz-popconfirm nzPopconfirmTitle="Are you sure?"
-        nzOkText="Yes" nzCancelText="No" (nzOnConfirm)="deleteComment(item)" [nzIcon]="iconTpl"><i nz-icon
-          nzType="delete" nzTheme="fill"></i></a>
+      <a nz-button [nzDanger]="true" nzSize="small" nzType="text" nz-popconfirm
+        nzPopconfirmTitle="{{'ConfirmText' | translate}}" nzOkText="{{'Yes' | translate}}" nzCancelText="{{'No' | translate}}"
+        (nzOnConfirm)="deleteComment(item)" [nzIcon]="iconTpl"><i nz-icon nzType="delete" nzTheme="fill"></i></a>
     </nz-comment-action>
 
     <div nz-row>
@@ -24,13 +24,14 @@
           <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="avatar"></nz-avatar>
           <nz-comment-content>
             <nz-form-item>
-              <textarea [(ngModel)]="userComment" placeholder="Add comment" nz-input></textarea>
+              <textarea [(ngModel)]="userComment" placeholder="{{'CommentPlaceholder' | translate}}"
+                nz-input></textarea>
             </nz-form-item>
             <br>
             <nz-form-item>
               <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!userComment"
                 (click)="addComments(item)">
-                Add Comment
+                {{'CommentPlaceholder' | translate}}
               </button>
             </nz-form-item>
           </nz-comment-content>
@@ -48,7 +49,7 @@
 </ng-template>
 
 <div *ngIf="dataSource.length === 0; else blogTemplate">
-  <p>No blog posts found</p>
+  <p>{{'NotFound' | translate}}</p>
 </div>
 
 <ng-template #blogTemplate>

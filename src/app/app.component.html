@@ -1,5 +1,20 @@
 <nz-card>
-  <nz-page-header nzTitle="My Blog App"></nz-page-header>
+  <nz-page-header>
+    <nz-page-header-title>{{'AppTitle' | translate}}</nz-page-header-title>
+    <nz-page-header-extra>
+      <a nz-dropdown [nzDropdownMenu]="menu">
+        Language
+        <span nz-icon nzType="down"></span>
+      </a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li nz-menu-item (click)="getLang('en')">English</li>
+          <li nz-menu-item (click)="getLang('ml')">Malayalam</li>
+        </ul>
+      </nz-dropdown-menu>
+    </nz-page-header-extra>
+
+  </nz-page-header>
 </nz-card>
 
 <nz-card class="centered">

@@ -3,7 +3,7 @@
   <div nz-col nzSpan="16">
     <nz-input-group style="width: 90%;" [nzSuffix]="textAreaClearTpl"
       class="ant-input-affix-wrapper-textarea-with-clear-btn">
-      <textarea nz-input [(ngModel)]="blogContent" placeholder="Please input a content"></textarea>
+      <textarea nz-input [(ngModel)]="blogContent" placeholder="{{'BlogPlaceholder' | translate}}"></textarea>
     </nz-input-group>
     <ng-template #textAreaClearTpl>
       <span nz-icon class="ant-input-clear-icon" nzTheme="fill" nzType="close-circle" *ngIf="blogContent"
@@ -15,7 +15,7 @@
     <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
       <button nz-button>
         <span nz-icon nzType="upload"></span>
-        Select File
+        {{'UploadBtn' | translate}}
       </button>
     </nz-upload>
   </div>
@@ -26,5 +26,5 @@
 
 <div nz-row class="centered">
   <button nz-button nzType="primary" [disabled]="!(blogContent || fileList.length > 0)"
-    (click)="onSubmit()">Submit</button>
+    (click)="onSubmit()">{{'SubmitBtn' | translate}}</button>
 </div>

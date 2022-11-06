@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IBlog } from './shared/models/blog.model';
+import { TranslationService } from './shared/services/translation.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,16 @@ import { IBlog } from './shared/models/blog.model';
 export class AppComponent implements OnInit {
   blogDetails: IBlog[] = [];
 
+  constructor(private translate: TranslationService) {
+    console.log(translate.data);
+  }
+
   ngOnInit(): void {
     this.getallBlogs();
+  }
+
+  getLang(lang: string) {
+    this.translate.use(lang);
   }
 
   onBlogSubmit(val: boolean) {

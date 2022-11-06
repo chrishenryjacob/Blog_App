@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -24,14 +24,22 @@ import { NzCommentModule } from 'ng-zorro-antd/comment';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { TranslatePipe } from './shared/pipes/translate.pipe';
+import { TranslationService } from './shared/services/translation.service';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 registerLocaleData(en);
+
+export function setupTranslateFactory(service: TranslationService): Function {
+  return () => service.use('en');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogFormComponent,
-    BlogListComponent
+    BlogListComponent,
+    TranslatePipe
   ],
   imports: [
     BrowserModule,
@@ -49,9 +57,17 @@ registerLocaleData(en);
     NzCommentModule,
     NzDatePickerModule,
     NzAvatarModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzDropDownModule
   ],
   providers: [
+    TranslationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: setupTranslateFactory,
+      deps: [TranslationService],
+      multi: true
+    },
     { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
