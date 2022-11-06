@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   blogDetails: IBlog[] = [];
 
   constructor(private translate: TranslationService) {
-    console.log(translate.data);
+
   }
 
   ngOnInit(): void {

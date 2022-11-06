@@ -14,20 +14,46 @@ export class BlogFormComponent implements OnInit {
 
   blogContent !: string;
   fileList: NzUploadFile[] = [];
+  attachment!: NzUploadFile;
+  fileAttached!: { content: string; name: string; };
 
   constructor(private msg: NzMessageService) { }
 
   ngOnInit(): void {
   }
 
-  beforeUpload = (file: NzUploadFile): boolean => {
-    this.fileList = this.fileList.concat(file);
+  beforeUpload = (file: NzUploadFile) => {
+    const reader = new FileReader();
+    reader.readAsBinaryString(file as unknown as File);
+    reader.onloadend = () => {
+      this.fileList = [];
+      this.fileList = this.fileList.concat(file);
+      this.attachment = this.fileList[0];
+      this.getBase64(this.attachment as unknown as File, (img: string) => {
+        const base64 = img.split(',')[1];
+        this.fileAttached = {
+          content: base64,
+          name: file.name,
+        }
+      });
+    };
     return false;
   };
+
+  getBase64(img: File, callback: (img: string) => void): void {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result?.toString() as string));
+    reader.readAsDataURL(img);
+  }
 
   onSubmit() {
     const blogData = localStorage.getItem('BlogDetails');
     let formData = blogData ? JSON.parse(blogData) : [];
+
+    const imgData = new FormData();
+    this.fileList.forEach((file: any) => {
+      imgData.append('files[]', file);
+    });
 
     const result: IBlog = {
       id: formData.length + 1,
@@ -36,7 +62,7 @@ export class BlogFormComponent implements OnInit {
       avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
       content: this.blogContent,
       likes: 0,
-      img: this.fileList[0],
+      img: 'data:image/png;base64,' + this.fileAttached.content,
       children: []
     }
 

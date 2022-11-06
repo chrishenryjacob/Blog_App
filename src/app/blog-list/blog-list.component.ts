@@ -15,7 +15,6 @@ export class BlogListComponent implements OnInit {
   avatar = 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
   userComment!: string;
   submitting = false;
-  file!: NzUploadFile;
 
   constructor() { }
 
@@ -37,7 +36,7 @@ export class BlogListComponent implements OnInit {
       avatar: this.avatar,
       content: this.userComment,
       likes: 0,
-      img: this.file,
+      img: '',
       children: []
     })
 

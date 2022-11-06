@@ -2,7 +2,8 @@
   <nz-comment [nzAuthor]="item.author">
     <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
     <nz-comment-content>
-      <p>{{ item.content }}</p>
+      <p>{{ item.content }}</p> <img *ngIf="item.img" style='display:block; width:200px;height:200px;'
+        [src]="item.img" />
     </nz-comment-content>
     <nz-comment-action>
       <span nz-tooltip nzTitle="Like" nz-icon nzType="like" [nzTheme]="item.likes > 0 ? 'twotone' : 'outline'"
@@ -14,8 +15,9 @@
     </nz-comment-action>
     <nz-comment-action>
       <a nz-button [nzDanger]="true" nzSize="small" nzType="text" nz-popconfirm
-        nzPopconfirmTitle="{{'ConfirmText' | translate}}" nzOkText="{{'Yes' | translate}}" nzCancelText="{{'No' | translate}}"
-        (nzOnConfirm)="deleteComment(item)" [nzIcon]="iconTpl"><i nz-icon nzType="delete" nzTheme="fill"></i></a>
+        nzPopconfirmTitle="{{'ConfirmText' | translate}}" nzOkText="{{'Yes' | translate}}"
+        nzCancelText="{{'No' | translate}}" (nzOnConfirm)="deleteComment(item)" [nzIcon]="iconTpl"><i nz-icon
+          nzType="delete" nzTheme="fill"></i></a>
     </nz-comment-action>
 
     <div nz-row>
