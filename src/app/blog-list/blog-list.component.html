@@ -6,7 +6,7 @@
     </nz-comment-content>
     <nz-comment-action>
       <span nz-tooltip nzTitle="Like" nz-icon nzType="like" [nzTheme]="item.likes > 0 ? 'twotone' : 'outline'"
-        (click)="addLike(item.id)"></span>
+        (click)="addLike(item)"></span>
       <span class="count like">{{ item.likes }}</span>
     </nz-comment-action>
     <nz-comment-action>

@@ -22,9 +22,8 @@ export class BlogListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addLike(id: number): void {
-    const index = this.dataSource.findIndex(item => item.id === id);
-    this.dataSource[index].likes += 1;
+  addLike(data: IBlog): void {
+    data.likes += 1;
     this.updateBlogDetails()
   }
 
