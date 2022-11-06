@@ -20,6 +20,9 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { BlogFormComponent } from './blog-form/blog-form.component';
 import { BlogListComponent } from './blog-list/blog-list.component';
+import { NzCommentModule } from 'ng-zorro-antd/comment';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 registerLocaleData(en);
 
@@ -41,7 +44,10 @@ registerLocaleData(en);
     NzUploadModule,
     NzMessageModule,
     NzIconModule,
-    NzButtonModule
+    NzButtonModule,
+    NzCommentModule,
+    NzDatePickerModule,
+    NzAvatarModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }
