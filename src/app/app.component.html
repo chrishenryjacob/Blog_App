@@ -6,7 +6,7 @@
   <div nz-row>
     <div nz-col nzSpan="3"></div>
     <div nz-col nzSpan="18">
-      <app-blog-form></app-blog-form>
+      <app-blog-form (submitEvent)="onBlogSubmit($event)"></app-blog-form>
     </div>
     <div nz-col nzSpan="3"></div>
   </div>
@@ -16,7 +16,7 @@
   <div nz-row>
     <div nz-col nzSpan="3"></div>
     <div nz-col nzSpan="18">
-      <app-blog-list></app-blog-list>
+      <app-blog-list [dataSource]="blogDetails"></app-blog-list>
     </div>
     <div nz-col nzSpan="3"></div>
   </div>

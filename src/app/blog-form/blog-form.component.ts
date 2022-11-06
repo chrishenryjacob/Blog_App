@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
 
 @Component({
   selector: 'app-blog-form',
@@ -9,22 +9,41 @@ import { NzUploadChangeParam } from 'ng-zorro-antd/upload';
 })
 export class BlogFormComponent implements OnInit {
 
+  @Output() submitEvent = new EventEmitter<boolean>();
+
   blogContent !: string;
+  fileList: NzUploadFile[] = [];
 
   constructor(private msg: NzMessageService) { }
 
   ngOnInit(): void {
   }
 
+  beforeUpload = (file: NzUploadFile): boolean => {
+    this.fileList = this.fileList.concat(file);
+    return false;
+  };
 
-  handleChange(info: NzUploadChangeParam): void {
-    if (info.file.status !== 'uploading') {
-      console.log(info.file, info.fileList);
+  onSubmit() {
+    const blogData = localStorage.getItem('BlogDetails');
+    let formData = blogData ? JSON.parse(blogData) : [];
+
+    const result = {
+      description: this.blogContent,
+      img: this.fileList
     }
-    if (info.file.status === 'done') {
-      this.msg.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
-      this.msg.error(`${info.file.name} file upload failed.`);
-    }
+
+    formData.push(result);
+    localStorage.setItem('BlogDetails', JSON.stringify(formData));
+
+    this.msg.create('success', 'New blog post added');
+
+    this.submitEvent.emit(true);
+    this.resetForm();
+  }
+
+  resetForm() {
+    this.blogContent = '';
+    this.fileList = [];
   }
 }
